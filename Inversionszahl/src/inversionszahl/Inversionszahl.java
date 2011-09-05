@@ -1,5 +1,7 @@
 package inversionszahl;
 
+import java.lang.StringBuilder;
+
 /**
  * Takes in space separated ints from args, sorts, and returns how times the values were inverted
  * to achieve sortedness.
@@ -18,22 +20,22 @@ public class Inversionszahl {
 	
 	public static void main(String[] args) {
 		Inversionszahl a = new Inversionszahl(stringArrayToIntArray(args));
-		System.out.println("The original array is: ");
-		System.out.print("{ ");
-		for (int i = 0; i < a.input.length; i++){
-			System.out.print(a.input[i]);
-			if (i < a.input.length-1) System.out.print(", ");
-		}
-		System.out.print(" }\n");
+		System.out.println("The input array was: " + a.printArray(a.input));
 		int inversionzahl = a.sortAndReturnInversionzahl(a.input, new int[a.input.length], 0, a.input.length-1, 0); //check this
 		System.out.print("The inversion count was: " + inversionzahl + "\nThe sorted array is: ");
-		System.out.print("{ ");
-		for (int i = 0; i < a.input.length; i++){
-			System.out.print(a.input[i]);
-			if (i < a.input.length-1) System.out.print(", ");
-		}
-		System.out.print(" }");
+		System.out.println("Sorted array: " + a.printArray(a.input));
 
+	}
+	
+	private String printArray(int[] a){
+		StringBuilder sB = new StringBuilder();
+		sB.append('{');
+		for (int i = 0; i < a.length; i++){
+			sB.append(a[i]);
+			if ( i < a.length-1) sB.append(", ");
+		}
+		sB.append('}');
+		return sB.toString();
 	}
 	
 	public static int[] stringArrayToIntArray(String[] sArray){
